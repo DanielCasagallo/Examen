@@ -1,0 +1,67 @@
+from tkinter import *
+from turtle import *
+
+def Dibujar(n):
+    print(lados.get())
+    for i in range(n):
+        forward(100)
+        right(360/n)
+
+def Perimetro(n):
+    return n*n
+
+def Area(lados,base,altura,perimetro,apotema,lado):
+    res = 0
+    if lados == 3:
+        r = base*altura
+        print('El perimetro es:',Perimetro(lado))
+    elif lados == 4:
+        r = lado*lado
+        print('El perimetro es:',Perimetro(lado))
+    elif lados >=5:
+        r = (perimetro*apotema)/2
+        print('El perimetro es:',Perimetro(lado))
+    print('El area es:',r)
+    
+
+def Area1():
+    ventana1 = Tk()
+    ventana1.title("FIGURAS")
+    ventana.geometry("340x480")
+    ventana.iconify()
+    ventana.title("Calcular area y perimetro de una figura")
+    lados = int(input("Ingrese el numero de lados: "))
+    if lados <=1:
+        print('Valores no validos, ingrese valores a partir del 3')
+    elif lados == 3:
+        lado = int(input("Ingrese el valor del lado: "))
+        base = int(input("Ingrese la base: "))
+        altura = int(input("Ingrese la altura: "))
+        boton1= Button(ventana1, text = "Areas y perimetros", command = lambda: Area(3,base,altura,0,0,lado)).place(x = 10, y = 90)
+        print('Vaya a la ventana FIGURA que se acaba de abrir')
+    elif lados == 4:
+        lado = int(input("Ingrese el valor del lado: "))
+        boton1= Button(ventana1, text = "Areas y perimetros", command = lambda: Area(4,0,0,0,0,lado)).place(x = 10, y = 90)
+        print('Vaya a la ventana FIGURA que se acaba de abrir')
+    elif lados >=5:
+        lado = int(input("Ingrese el valor del lado: "))
+        apotema = int(input("Ingrese el apotema: "))
+        perimetro = Perimetro(lado)
+        boton1= Button(ventana1, text = "Areas y perimetros", command = lambda: Area(5,0,0,perimetro,apotema,lado)).place(x = 40, y = 90)
+        print('Vaya a la ventana FIGURA que se acaba de abrir')
+        
+    Label(ventana1, text = "Presione las siguientes opciones").place(x = 10, y = 20)
+    Button(ventana1, text = "Dibujar", command = lambda: Dibujar(lados)).place(x = 60, y = 60)
+    Button(ventana1, text = "Crear nueva Figura", command = ventana1.destroy).place(x = 60, y = 120)
+    Label(ventana1, text = "Precione crear y vaya a la\n ventana Calcular Area y Perimetro").place(x = 15, y = 150)
+    
+ventana = Tk()
+ventana.title("EXAMEN")
+ventana.geometry("640x480")
+lados = IntVar()
+Label(ventana, text = "Presione en calcular area\n e ingrese el numero de lados en la consola\ndespues vaya a la nueva ventana ").place(x = 10, y = 80)
+boton1= Button(ventana, text = "Calcular area y perimetro", command = Area1).place(x = 50, y = 20)
+
+
+
+
